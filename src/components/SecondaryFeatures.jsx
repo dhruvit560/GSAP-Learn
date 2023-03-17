@@ -200,7 +200,7 @@ function FeaturesDesktop() {
           scrub: 1,
           end: '+=700',
           toggleActions: 'play none none reverse',
-          markers: true,
+          markers: false,
         },
       }
     )

@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, PureComponent } from 'react'
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import logoLaravel from '@/images/logos/laravel.svg'
@@ -8,10 +8,14 @@ import logoStatamic from '@/images/logos/statamic.svg'
 import logoStaticKit from '@/images/logos/statickit.svg'
 import logoTransistor from '@/images/logos/transistor.svg'
 import logoTuple from '@/images/logos/tuple.svg'
-import { gsap, Power2 } from 'gsap'
+import { gsap, Power2, Power4 } from 'gsap'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
+// import TweenMax from 'gsap/dist/TweenMax'
+// import {  } from 'gsap/all'
+import TweenMax from 'gsap'
 
 gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(TweenMax)
 
 export function Hero() {
   let allItem = useRef(null)
@@ -56,6 +60,76 @@ export function Hero() {
       }
     )
   }, [])
+
+  useEffect(() => {
+    var magnets = document.querySelectorAll('.magnetic')
+    var strength = 40
+
+    magnets.forEach((magnet) => {
+      magnet.addEventListener('mousemove', moveMagnet)
+      magnet.addEventListener('mouseout', function (event) {
+        TweenMax.to(event.currentTarget, 1, {
+          x: 0,
+          y: 0,
+          ease: Power4.easeOut,
+        })
+      })
+    })
+
+    function moveMagnet(event) {
+      var magnetButton = event.currentTarget
+      var bounding = magnetButton.getBoundingClientRect()
+
+      //console.log(magnetButton, bounding)
+
+      TweenMax.to(magnetButton, 1, {
+        x:
+          ((event.clientX - bounding.left) / magnetButton.offsetWidth - 0.5) *
+          strength,
+        y:
+          ((event.clientY - bounding.top) / magnetButton.offsetHeight - 0.5) *
+          strength,
+        ease: Power4.easeOut,
+      })
+
+      //magnetButton.style.transform = 'translate(' + (((( event.clientX - bounding.left)/(magnetButton.offsetWidth))) - 0.5) * strength + 'px,'+ (((( event.clientY - bounding.top)/(magnetButton.offsetHeight))) - 0.5) * strength + 'px)';
+    }
+
+    let button = document.querySelector('.primary-button')
+    let item = document.querySelector('.primary-button .round')
+
+    button.addEventListener('mouseenter', function (event) {
+      this.classList += ' animate'
+
+      let buttonX = event.offsetX
+      let buttonY = event.offsetY
+
+      if (buttonY < 24) {
+        item.style.top = 0 + 'px'
+      } else if (buttonY > 30) {
+        item.style.top = 48 + 'px'
+      }
+
+      item.style.left = buttonX + 'px'
+      item.style.width = '1px'
+      item.style.height = '1px'
+    })
+
+    button.addEventListener('mouseleave', function () {
+      this.classList.remove('animate')
+
+      let buttonX = event.offsetX
+      let buttonY = event.offsetY
+
+      if (buttonY < 24) {
+        item.style.top = 0 + 'px'
+      } else if (buttonY > 30) {
+        item.style.top = 48 + 'px'
+      }
+      item.style.left = buttonX + 'px'
+    })
+  }, [])
+
   return (
     <div>
       <Container className="pt-20 pb-16 text-center lg:pt-32">
@@ -89,19 +163,29 @@ export function Hero() {
           </p>
         </div>
         <div className="mt-10 flex justify-center gap-x-6">
-          <Button href="/register">Get 6 months free</Button>
-          <Button
-            href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-            variant="outline"
-          >
-            <svg
-              aria-hidden="true"
-              className="h-3 w-3 flex-none fill-blue-600 group-active:fill-current"
+          {/* <div className="magnetic">
+            <Button href="/register">Get 6 months free</Button>
+          </div> */}
+          <div className="magnetic">
+            <button class="primary-button">
+              <div className="btn-text">Hover me !</div>
+              <span class="round" />
+            </button>
+          </div>
+          <div className="magnetic">
+            <Button
+              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+              variant="outline"
             >
-              <path d="m9.997 6.91-7.583 3.447A1 1 0 0 1 1 9.447V2.553a1 1 0 0 1 1.414-.91L9.997 5.09c.782.355.782 1.465 0 1.82Z" />
-            </svg>
-            <span className="ml-3">Watch video</span>
-          </Button>
+              <svg
+                aria-hidden="true"
+                className="h-3 w-3 flex-none fill-blue-600 group-active:fill-current"
+              >
+                <path d="m9.997 6.91-7.583 3.447A1 1 0 0 1 1 9.447V2.553a1 1 0 0 1 1.414-.91L9.997 5.09c.782.355.782 1.465 0 1.82Z" />
+              </svg>
+              <span className="ml-3">Watch video</span>
+            </Button>
+          </div>
         </div>
         <div className="mt-36 lg:mt-44">
           <p className="font-display text-base text-slate-900">

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, PureComponent } from 'react'
 import { CallToAction } from '@/components/CallToAction'
 import { Faqs } from '@/components/Faqs'
 import { Footer } from '@/components/Footer'
@@ -60,10 +60,18 @@ export default function Home() {
         },
       }
     )
+    var cursor = document.querySelector('.blob')
+
+    document.addEventListener('mousemove', function (e) {
+      var x = e.clientX
+      var y = e.clientY
+      cursor.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`
+    })
   }, [])
 
   return (
     <>
+      <div class="blob"></div>
       <Head>
         <title>TaxPal - Accounting made simple for small businesses</title>
         <meta

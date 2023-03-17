@@ -30,6 +30,10 @@ module.exports = {
       maxWidth: {
         '2xl': '40rem',
       },
+      colors:{
+        primary:"#171717",
+        orange:"#FA7E24"
+      }
     },
   },
   plugins: [require('@tailwindcss/forms')],
