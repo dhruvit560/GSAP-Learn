@@ -2,6 +2,7 @@ import 'focus-visible'
 import '@/styles/tailwind.css'
 import '@/styles/global.css'
 import '@/styles/fonts.css'
+import '@/styles/demo-admin.css'
 import Head from 'next/head'
 
 export default function App({ Component, pageProps }) {

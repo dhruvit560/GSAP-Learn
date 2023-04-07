@@ -17,7 +17,7 @@
 }
 
 body{
-    color: #fff;
+    color: #000;
     font-family: 'Poppins', sans-serif;
 
 }
@@ -121,4 +121,22 @@ body{
   color: #171717;
   font-weight: 700;
 }
-
+.pro-sidebar{
+    height:100vh !important;
+}
+@media (max-width:1024px){
+    .pro-sidebar{
+        position:absolute !important;
+        left:-1000px !important;
+        width: auto !important;
+    }
+    .active .pro-sidebar{
+        position:absolute !important;
+        left:-0px !important;
+        width: 270px !important;
+    }
+}
+.admin-content{
+    height: calc(100vh - 56px);
+    overflow: auto;
+}

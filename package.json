@@ -10,8 +10,9 @@
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
-    "@headlessui/react": "^1.7.8",
+    "@headlessui/react": "^1.7.13",
     "@tailwindcss/forms": "^0.5.3",
+    "apexcharts": "^3.37.2",
     "autoprefixer": "^10.4.12",
     "clsx": "^1.2.1",
     "focus-visible": "^5.2.0",
@@ -19,7 +20,10 @@
     "next": "13.0.2",
     "postcss-focus-visible": "^6.0.4",
     "react": "18.2.0",
+    "react-apexcharts": "^1.4.0",
     "react-dom": "18.2.0",
+    "react-pro-sidebar": "^0.7.1",
+    "react-tabs": "^6.0.0",
     "tailwindcss": "^3.2.1"
   },
   "devDependencies": {
